@@ -2,7 +2,19 @@
 
 namespace IlBronza\FileImporter;
 
+use IlBronza\FileImporter\Models\Fileimportationrow;
+
 class FileImporter
 {
-    // Build wonderful things
+	static function getRowsToAnalizeCount()
+	{
+		return cache()->remember(
+			'fileimportationrowsToAnalize',
+			180,
+			function()
+			{
+				return Fileimportationrow::notParsed()->count();
+			}
+		);
+	}
 }
