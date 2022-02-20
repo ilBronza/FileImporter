@@ -85,6 +85,11 @@ class FileImporterController extends Controller
 		
 	}
 
+	public function performLateControllerOperations()
+	{
+		
+	}
+
 	public function import(Request $request)
 	{
 		ini_set('max_execution_time', "-1");
@@ -102,11 +107,16 @@ class FileImporterController extends Controller
 
 		$this->setFileImportation($request, $parameters);
 
+		$this->performLateControllerOperations();
+
 		return view($this->getStoreView(), ['fileimportation' => $this->fileimportation]);
 	}
 
 	public function store(Fileimportation $fileimportation)
 	{
+		ini_set('max_execution_time', "-1");
+		ini_set('memory_limit', "-1");
+
 		$this->fileimportation = $fileimportation;
 
 		$this->fileimportation->setStoringStarted();
