@@ -6,9 +6,11 @@ Route::group([
 	],
 	function()
 	{
+		Route::get('file-fileimportations', 'FileImporterIndexController@index')->name('fileimportations.index');
+
 		Route::get('file-fileimportation/{fileimportation}/parse', 'FileImporterParserController@parse')->name('fileimportations.parse');
 
-		Route::get('file-fileimportation/{fileimportation}/summary', 'FileImporterSummaryController@index')->name('fileimportations.summary');
+		Route::get('file-fileimportation/{fileimportation}/summary', 'FileImporterSummaryController@index')->name('fileimportations.show');
 
 		Route::post('file-fileimportation/{fileimportation}/store-progressbar', 'FileImporterParserController@storeProgressbar')->name('fileimportations.storeProgressbar');
 

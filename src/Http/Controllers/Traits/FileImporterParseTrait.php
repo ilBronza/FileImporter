@@ -93,20 +93,15 @@ trait FileImporterParseTrait
 	{
 		$data = $this->getRowData($fileimportationrow);
 
-		if(($message = $this->insertEntity($data)) === true)
-			return $fileimportationrow->delete();
-
-		// try
-		// {
-		// 	if(($message = $this->insertEntity($data)) === true)
-		// 		return $fileimportationrow->delete();			
-		// }
-		// catch(\Exception $e)
-		// {
-		// 	mori('asd');
-		// 	mori($e);
-		// 	return $fileimportationrow->setParsed($e->getMessage(), $e->getCode());
-		// }
+		try
+		{
+			if(($message = $this->insertEntity($data)) === true)
+				return $fileimportationrow->delete();
+		}
+		catch(\Exception $e)
+		{
+			return $fileimportationrow->setParsed($e->getMessage(), $e->getCode());
+		}
 
 		return $fileimportationrow->setParsed($message);
 	}
@@ -124,7 +119,6 @@ trait FileImporterParseTrait
 			}
 			catch(\Exception $e)
 			{
-				mori($e);
 				$row->setParsed($e->getMessage(), $e->getCode());
 			}
 

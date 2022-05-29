@@ -32,6 +32,18 @@ class Fileimportation extends Model
 		'request_data' => 'array'
 	];
 
+	protected $dates = [
+		'storing_started_at',
+		'storing_ended_at',
+		'parsing_started_at',
+		'parsing_ended_at',
+	];
+
+	public function getImportationType()
+	{
+		return class_basename($this->controller);
+	}
+
 	public function hasStartedStoring()
 	{
 		return !! $this->storing_started_at;
@@ -55,6 +67,11 @@ class Fileimportation extends Model
 	public function fileimportationrows()
 	{
 		return $this->hasMany(Fileimportationrow::class);
+	}
+
+	public function allFileimportationrows()
+	{
+		return $this->hasMany(Fileimportationrow::class)->withTrashed();		
 	}
 
 	public function getRequestExtraData() : array

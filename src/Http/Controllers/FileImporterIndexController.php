@@ -9,6 +9,7 @@ use IlBronza\CRUD\Traits\CRUDDeleteTrait;
 use IlBronza\CRUD\Traits\CRUDDestroyTrait;
 use IlBronza\CRUD\Traits\CRUDEditUpdateTrait;
 use IlBronza\CRUD\Traits\CRUDIndexTrait;
+use IlBronza\CRUD\Traits\CRUDPlainIndexTrait;
 
 use IlBronza\CRUD\Traits\CRUDRelationshipTrait;
 use IlBronza\CRUD\Traits\CRUDShowTrait;
@@ -16,10 +17,11 @@ use IlBronza\CRUD\Traits\CRUDUpdateEditorTrait;
 use IlBronza\FileImporter\Models\Fileimportation;
 use Illuminate\Http\Request;
 
-class FileImporterSummaryController extends CRUD
+class FileImporterIndexController extends CRUD
 {
     // use CRUDShowTrait;
     use CRUDIndexTrait;
+    use CRUDPlainIndexTrait;
     // use CRUDEditUpdateTrait;
     // use CRUDUpdateEditorTrait;
     // use CRUDCreateStoreTrait;
@@ -37,11 +39,21 @@ class FileImporterSummaryController extends CRUD
             [
                 'id' => [
                     'view' => 'flat',
-                    'width' => '35px'
+                    'width' => '35px',
+                    'order' => [
+                        'type' => 'desc'
+                    ]
                     //'visible' => false
                 ],
-                'message' => 'flat',
-                'data' => 'flat'
+                'mySelfShow' => 'links.see',
+                'mySelfImportation' => '_fn_getImportationType',
+                'user_id' => 'users.name',
+                'filename' => 'flat',
+                'rows_count' => 'flat',
+                'mySelfErrors.fileimportationrows_count' => 'flat',
+                'mySelfTotal.all_fileimportationrows_count' => 'flat',
+                'storing_started_at' => 'dates.date',
+                'parsing_ended_at' => 'dates.date',
             ]
         ]
     ];
@@ -99,7 +111,7 @@ class FileImporterSummaryController extends CRUD
 
     public function getIndexElements()
     {
-        return $this->fileimportation->fileimportationrows()->withTrashed()->get();
+        return Fileimportation::withCount('fileimportationrows', 'allFileimportationrows')->get();
     }
 
 
@@ -112,14 +124,6 @@ class FileImporterSummaryController extends CRUD
      * parameter that decides if create button is available
      **/
      public $avoidCreateButton = true;
-
-
-    public function index(Request $request, Fileimportation $fileimportation)
-    {
-        $this->fileimportation = $fileimportation;
-
-        return $this->_index($request);
-    }
 
     // /**
     //  * START base methods declared in extended controller to correctly perform dependency injection

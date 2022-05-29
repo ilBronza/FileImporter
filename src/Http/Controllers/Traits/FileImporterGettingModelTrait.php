@@ -59,7 +59,8 @@ trait FileImporterGettingModelTrait
 			if($model = $this->_getModel($data))
 				return $model;
 
-			return null;			
+			throw new \Exception ('model not found');
+			// return null;
 		}
 
 		return $this->makeModel();

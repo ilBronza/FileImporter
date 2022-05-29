@@ -56,7 +56,7 @@ trait FileImporterRoutingTrait
 
 	public function getSummaryRoute(Fileimportation $fileimportation)
 	{
-		return route('fileimportations.summary', ['fileimportation' => $fileimportation->getKey()]);
+		return route('fileimportations.show', ['fileimportation' => $fileimportation->getKey()]);
 	}
 
 	public function getParsingEndedRoute(Fileimportation $fileimportation)
