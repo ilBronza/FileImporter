@@ -93,37 +93,46 @@ trait FileImporterParseTrait
 	{
 		$data = $this->getRowData($fileimportationrow);
 
-		try
+		if($this->debug)
 		{
 			if(($message = $this->insertEntity($data)) === true)
 				return $fileimportationrow->delete();
+
+			dd($message);
 		}
-		catch(\Exception $e)
+		else
 		{
-			return $fileimportationrow->setParsed($e->getMessage(), $e->getCode());
+			try
+			{
+				if(($message = $this->insertEntity($data)) === true)
+					return $fileimportationrow->delete();
+			}
+			catch(\Exception $e)
+			{
+				return $fileimportationrow->setParsed($e->getMessage(), $e->getCode());
+			}
+
+			return $fileimportationrow->setParsed($message);			
 		}
 
-		return $fileimportationrow->setParsed($message);
 	}
 
 	public function _parseSlice()
 	{
-		// $i = 0;
-
 		foreach($this->rows as $row)
 		{
-			// $i ++;
-			try
-			{
+			if($this->debug)
 				$this->storeRow($row);
-			}
-			catch(\Exception $e)
-			{
-				$row->setParsed($e->getMessage(), $e->getCode());
-			}
 
-			// if(($i % 4) == 0)
-			// 	usleep(1000000);
+			else
+				try
+				{
+					$this->storeRow($row);
+				}
+				catch(\Exception $e)
+				{
+					$row->setParsed($e->getMessage(), $e->getCode());
+				}
 		}
 	}
 

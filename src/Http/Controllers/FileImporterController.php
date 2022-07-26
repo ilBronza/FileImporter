@@ -43,6 +43,8 @@ class FileImporterController extends Controller
 	public $fullModelClass;
 	public $retrievingModelFields;
 
+	public $debug = false;
+
 	public function form()
 	{
 		$form = $this->getForm();
