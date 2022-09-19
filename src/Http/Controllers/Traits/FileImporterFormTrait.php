@@ -69,7 +69,7 @@ trait FileImporterFormTrait
 		if($this->formView)
 			return $this->formView;
 
-		return 'fileimporter::form';
+		return 'form::uikit.form';
 	}
 
 	public function getLoadFileAction()

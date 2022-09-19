@@ -112,7 +112,7 @@ trait FileImporterStoreTrait
 
 		$this->sheetData = $data->getActiveSheet()->toArray(null, true, true, true);
 
-		$this->manageIntestation();		
+		$this->manageIntestation();
 
 		$this->fileimportation->rows_count = count($this->sheetData);
 		$this->fileimportation->save();

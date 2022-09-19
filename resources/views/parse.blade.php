@@ -1,4 +1,4 @@
-@extends('uikittemplate::app')
+@extends('app')
 @section('content')
 
 <!-- START \views\destinataries\_create.blade.php -->

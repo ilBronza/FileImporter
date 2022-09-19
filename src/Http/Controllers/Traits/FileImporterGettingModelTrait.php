@@ -62,7 +62,6 @@ trait FileImporterGettingModelTrait
 			throw new \Exception ('model not found');
 			// return null;
 		}
-			mori('zxcvzx');
 
 		return $this->makeModel();
 	}
