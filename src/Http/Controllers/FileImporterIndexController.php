@@ -77,7 +77,7 @@ class FileImporterIndexController extends CRUD
         // 'deleted',
         // 'archived',
         // 'reorder',
-        // 'stroreReorder'
+        // 'storeReorder'
     ];
 
     /**
