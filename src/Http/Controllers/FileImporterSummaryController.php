@@ -65,7 +65,7 @@ class FileImporterSummaryController extends CRUD
         // 'deleted',
         // 'archived',
         // 'reorder',
-        // 'stroreReorder'
+        // 'storeReorder'
     ];
 
     /**
