@@ -158,19 +158,5 @@ class FileImporterIndexController extends CRUD
 
 
 
-
-    //  /**
-    //   * START CREATE PARAMETERS AND METHODS
-    //   **/
-
-    // // public function beforeRenderCreate()
-    // // {
-    // //     $this->modelInstance->agent_id = session('agent')->getKey();
-    // // }
-
-    //  /**
-    //   * STOP CREATE PARAMETERS AND METHODS
-    //   **/
-
 }
 
