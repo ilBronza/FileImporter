@@ -73,7 +73,7 @@
 					// location.reload();
 				}
 			});
-		}, 500);
+		}, {{ $parseInterval ?? 500 }});
 
 	});
 </script>

@@ -42,6 +42,7 @@ class FileImporterController extends Controller
 	public $parsingTimeoutSeconds = 60;
 	public $fullModelClass;
 	public $retrievingModelFields;
+	public $parseInterval = 500;
 
 	public $debug = false;
 
@@ -52,6 +53,11 @@ class FileImporterController extends Controller
 		$formView = $this->getFormView();
 
 		return view($formView, ['form' => $form]);
+	}
+
+	public function getParseInterval()
+	{
+		return $this->parseInterval;
 	}
 
 	// public function storeImportingrow(array $data)
@@ -183,6 +189,7 @@ class FileImporterController extends Controller
 		$this->fileimportation = $fileimportation;
 
 		return view($this->getParseView(), [
+			'parseInterval' => $this->getParseInterval(),
 			'fileimportation' => $fileimportation,
 			'keepParsingInterval' => $this->getJavascriptKeepParsingTimeout(),
 			'keepParsingRoute' => $this->getKeepParsingRoute(),
