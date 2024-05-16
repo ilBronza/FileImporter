@@ -82,10 +82,16 @@ class FileImporterController extends Controller
 
 	public function getValidationParameters()
 	{
-		return [
+		$result = [
 			'file' => 'required|file',
-			//'importing' => 'array|nullable'
 		];
+
+		$extraFields = $this->getFormExtraFields();
+
+		foreach($extraFields as $extraField)
+			$result[$extraField->getName()] = $extraField->getRules();
+
+		return $result;
 	}
 
 	public function performControllerOperations()
@@ -100,7 +106,7 @@ class FileImporterController extends Controller
 
 	public function import(Request $request)
 	{
-		ini_set('max_execution_time', "-1");
+		ini_set('max_execution_time', "300");
 		ini_set('memory_limit', "-1");
 
 		$parameters = $request->validate(

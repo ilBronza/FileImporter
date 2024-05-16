@@ -65,14 +65,12 @@ trait FileImporterParseTrait
 
 	public function insertEntity($data)
 	{
-		$model = $this->getModel($data);
+		if(! $model = $this->getModel($data))
+			return false;
 
 		$this->bind($data, $model);
 
 		$model = $this->manageModel($data, $model);
-
-		if(! $model)
-			return false;
 
 		return !! $model->save();
 	}
