@@ -30,13 +30,10 @@ class Fileimportation extends Model
 
 	protected $casts = [
 		'request_data' => 'array'
-	];
-
-	protected $dates = [
-		'storing_started_at',
-		'storing_ended_at',
-		'parsing_started_at',
-		'parsing_ended_at',
+		'storing_started_at' => 'datetime',
+		'storing_ended_at' => 'datetime',
+		'parsing_started_at' => 'datetime',
+		'parsing_ended_at' => 'datetime',
 	];
 
 	public function getImportationType()

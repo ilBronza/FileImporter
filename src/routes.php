@@ -18,10 +18,7 @@ Route::group([
 
 		Route::post('file-fileimportation/{fileimportation}/keep-parsing', 'FileImporterParserController@keepParsing')->name('fileimportations.keepParsing');
 
-
-
 		Route::get('file-fileimportation/parse/all', 'FileImporterParserController@parseAll')->name('fileimportations.parseAll');
-
 		
 	});
 
