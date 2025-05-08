@@ -25,7 +25,8 @@ trait FileImporterGettingModelTrait
 	{
 		$parameters = [];
 
-		$fields = $this->getGettingModelFields();
+		if(! $fields = $this->getGettingModelFields())
+			dd('getting model fields not set');
 
 		foreach($fields as $column => $field)
 		{

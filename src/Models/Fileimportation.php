@@ -29,7 +29,7 @@ class Fileimportation extends Model
 	];
 
 	protected $casts = [
-		'request_data' => 'array'
+		'request_data' => 'array',
 		'storing_started_at' => 'datetime',
 		'storing_ended_at' => 'datetime',
 		'parsing_started_at' => 'datetime',
