@@ -143,4 +143,16 @@ class Fileimportation extends Model
 		$this->parsing_keep_at = Carbon::now();
 		$this->save();		
 	}
+
+	public function getRequestDataPopupUrl()
+	{
+		return app('fileimporter')->route('fileimportations.requestDataPopup', [
+			'fileimportation' => config("datatables.replace_model_id_string")
+		]);
+	}
+
+	public function getDownloadFileUrl()
+	{
+		return $this->getKeyedRoute('downloadFile');
+	}
 }

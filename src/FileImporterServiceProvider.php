@@ -2,10 +2,13 @@
 
 namespace IlBronza\FileImporter;
 
+use IlBronza\CRUD\Traits\IlBronzaPackages\IlBronzaServiceProviderPackagesTrait;
 use Illuminate\Support\ServiceProvider;
 
 class FileImporterServiceProvider extends ServiceProvider
 {
+    use IlBronzaServiceProviderPackagesTrait;
+
     /**
      * Perform post-registration booting of services.
      *

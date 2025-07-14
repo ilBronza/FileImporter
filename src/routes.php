@@ -1,11 +1,19 @@
 <?php 
 
+use IlBronza\FileImporter\Http\Controllers\FileimporterDownloadFileController;
+use IlBronza\FileImporter\Http\Controllers\FileimporterShowController;
+
 Route::group([
 	'middleware' => ['web', 'auth'],
 	'namespace' => 'IlBronza\FileImporter\Http\Controllers'
 	],
 	function()
 	{
+		Route::get('/{fileimportation}/file-fileimportations-request-data-popup', [FileimporterShowController::class, 'popupRequestData'])->name('fileimportations.requestDataPopup');
+
+
+		Route::get('/{fileimportation}/download-file', [FileimporterDownloadFileController::class, 'download'])->name('fileimportations.downloadFile');
+
 		Route::get('file-fileimportations', 'FileImporterIndexController@index')->name('fileimportations.index');
 
 		Route::get('file-fileimportation/{fileimportation}/parse', 'FileImporterParserController@parse')->name('fileimportations.parse');
