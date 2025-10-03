@@ -19,10 +19,10 @@ class FileimporterDownloadFileController extends CRUD
         if(! stripos($fileimportation->controller, 'ReadOrderFileController'))
             dd('creare lo script generico');
 
-        $content = Storage::disk('XmlArchive')->get($fileimportation->filename);
+        $content = Storage::disk('local')->get($fileimportation->filename);
 
         return response($content)
-            ->header('Content-Type', Storage::disk('XmlArchive')->mimeType($fileimportation->filename))
+            ->header('Content-Type', Storage::disk('local')->mimeType($fileimportation->filename))
             ->header('Content-Disposition', 'attachment; filename="' . basename($fileimportation->filename) . '"');
 
         }
