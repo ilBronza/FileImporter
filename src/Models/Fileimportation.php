@@ -7,6 +7,7 @@ use IlBronza\CRUD\Traits\Model\CRUDModelTrait;
 use IlBronza\FileImporter\Models\Fileimportationrow;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Fileimportation extends Model
 {
@@ -88,7 +89,7 @@ class Fileimportation extends Model
 
 	public function getStorageTemporaryFilePath()
 	{
-		return storage_path('app/' . $this->getTemporaryFilePath());
+		return Storage::path($this->getTemporaryFilePath());
 	}
 
 	public function getRowsCount()
